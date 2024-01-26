@@ -9,15 +9,17 @@
 
 <div class="adminArticle">
 <table>
+    <!-- Need to a link to every th to sort them using sortObjects -->
     <tr>
         <th>Titre</th>
         <th>Nombres de vues </th>
-        <th>Nombre de commentaires</th>
+        <th>Nombre de commentaires </th>
         <th> Date de creation </th>
         <th> Date de mise à jour </th>
         <th></th>
         <th></th>
     </tr>
+    <?php print_r($articles) ?>
     <?php foreach ($articles as $article) { ?>
         <tr>
             <td><?= $article->getTitle() ?></td>

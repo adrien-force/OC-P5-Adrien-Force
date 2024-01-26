@@ -37,6 +37,7 @@ class AdminController {
         // On récupère les articles.
         $articleManager = new ArticleManager();
         $articles = $articleManager->getAllArticlesWithNbComments();
+        $articles = Utils::sortObjects($articles, 'nbComments', false);
 
         // On affiche la page d'administration des données.
         $view = new View("Administration des données");
