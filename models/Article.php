@@ -143,6 +143,15 @@
     }
 
     /**
+     * Getter pour la date de création au format string.
+     * @return string
+     */
+    public function getDateCreationString() : string
+    {
+        return $this->dateCreation->format('d/m/Y H:i:s');
+    }
+
+    /**
      * Setter pour la date de mise à jour. Si la date est une string, on la convertit en DateTime.
      * @param string|DateTime $dateUpdate
      * @param string $format : le format pour la convertion de la date si elle est une string.
@@ -165,5 +174,17 @@
     public function getDateUpdate() : ?DateTime 
     {
         return $this->dateUpdate;
+    }
+
+    /**
+     * Getter pour la date de mise à jour au format string.
+     * @return string
+     */
+    public function getDateUpdateString() : string
+    {
+        if ($this->dateUpdate) {
+            return $this->dateUpdate->format('d/m/Y H:i:s');
+        }
+        return "";
     }
  }
