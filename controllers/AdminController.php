@@ -34,10 +34,22 @@ class AdminController {
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
+        $newUtils = new Utils();
+
+
+        $sortData = $_GET['sortData'] ?? 'id';
+        $sortOrder = $_GET['sortOrder'] ?? 'true';
+        if ($sortOrder == 'false'){
+            $sortOrder = false;
+        }
+
         // On récupère les articles.
         $articleManager = new ArticleManager();
         $articles = $articleManager->getAllArticlesWithNbComments();
-        $articles = Utils::sortObjects($articles, 'nbComments', false);
+        if (isset($_GET['sortData']) || (isset($_GET['sortOrder']))) 
+        {
+            $articles = $newUtils->sortObjects($articles, $sortData, $sortOrder);
+        };
 
         // On affiche la page d'administration des données.
         $view = new View("Administration des données");
@@ -199,4 +211,20 @@ class AdminController {
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
     }
+
+    /**
+     * Selecteur de tri booleen
+     * 
+     */
+
+     public function selecteur($input) {if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
+        if ($_GET['sortData'] == $input && $_GET['sortOrder'] == 'true') {
+            $output = 'false';
+        } else {
+            $output = 'true';
+        }
+    } else {
+        $output = 'true';
+    }
+return $output;}
 }

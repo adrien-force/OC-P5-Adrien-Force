@@ -4,8 +4,10 @@
      * Et un formulaire pour ajouter un article. 
      */
 ?>
-
-<h2>Edition des articles</h2>
+<div class="adminLinks"> 
+<h2> <a href="index.php?action=admin" > Edition des articles </a></h2>
+<h2> <a href="index.php?action=adminData" > Data  </a></h2>
+</div>
 
 <div class="adminArticle">
     <?php foreach ($articles as $article) { ?>
