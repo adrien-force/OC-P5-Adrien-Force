@@ -20,6 +20,23 @@ class ArticleManager extends AbstractEntityManager
         }
         return $articles;
     }
+
+    /**
+     * Récupère tous les articles avec le nombre de commentaires.
+     * @return array : un tableau d'objets Article.
+     */
+    public function getAllArticlesWithNbComments() : array
+    {
+        $sql = "SELECT article.*, COUNT(comment.id) AS nbComments FROM article LEFT JOIN comment ON article.id = comment.id_article GROUP BY article.id";
+        $result = $this->db->query($sql);
+        $articles = [];
+
+        while ($article = $result->fetch()) {
+            $articles[] = new Article($article);
+        }
+        return $articles;
+    }
+
     
     /**
      * Récupère un article par son id.
@@ -62,8 +79,6 @@ class ArticleManager extends AbstractEntityManager
         $sql = "UPDATE article SET views = views + 1 WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
     }
-
-
 
     /**
      * Ajoute un article.

@@ -11,7 +11,27 @@
     private string $content = "";
     private int $views;
     private ?DateTime $dateCreation = null;
-    private ?DateTime $dateUpdate = null; 
+    private ?DateTime $dateUpdate = null;
+    private ?int $nbComments = null;
+
+
+    /**
+     * Setter pour le nombre de commentaires.
+     * @param int $nbComments
+     */
+    public function setNbComments(int $nbComments) : void
+    {
+        $this->nbComments = $nbComments;
+    }
+
+    /**
+     * Getter pour le nombre de commentaires.
+     * @return int
+     */
+    public function getNbComments() : int
+    {
+        return $this->nbComments;
+    }
     
     /**
      * Setter pour le nombre de vues.

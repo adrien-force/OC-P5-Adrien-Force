@@ -26,6 +26,28 @@ class AdminController {
     }
 
     /**
+     * Affiche la page d'administration des données.
+     * @return void
+     */
+    public function showAdminData() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+        // On récupère les articles.
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getAllArticlesWithNbComments();
+
+        // On affiche la page d'administration des données.
+        $view = new View("Administration des données");
+        $view->render("adminData", [
+            'articles' => $articles,
+
+
+        ]);
+    }
+
+    /**
      * Vérifie que l'utilisateur est connecté.
      * @return void
      */
