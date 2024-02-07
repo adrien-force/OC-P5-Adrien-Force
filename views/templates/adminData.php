@@ -6,15 +6,19 @@
  */
 ?>
 
-<h2>DATA PANEL</h2>
+<div class="adminLinks"> 
+<h2> <a href="index.php?action=admin" > Edition des articles </a></h2>
+<h2> <a href="index.php?action=adminData" > Panel Data  </a></h2>
+</div>
 
 <div class="adminArticle">
 
     <table>
-        <!-- Need to a link to every th to sort them using sortObjects -->
         <tr>
             <!--! TODO Refactor le selecteur de lien -->
-            <th><a href="index.php?action=adminData&sortData=title&sortOrder=<?php if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
+            <th>
+                <a href="index.php?action=adminData&sortData=title&sortOrder=<?php
+                                                                                if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
                                                                                     if ($_GET['sortData'] == "title" && $_GET['sortOrder'] == 'true') {
                                                                                         echo 'false';
                                                                                     } else {
@@ -24,7 +28,8 @@
                                                                                     echo 'true';
                                                                                 }
                                                                                 ?>"> Titre </a></th>
-            <th><a href="index.php?action=adminData&sortData=views&sortOrder=<?php if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
+            <th>
+                <a href="index.php?action=adminData&sortData=views&sortOrder=<?php if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
                                                                                     if ($_GET['sortData'] == "views" && $_GET['sortOrder'] == 'true') {
                                                                                         echo 'false';
                                                                                     } else {
@@ -34,7 +39,8 @@
                                                                                     echo 'true';
                                                                                 }
                                                                                 ?>"> Nombres de vues </a></th>
-            <th><a href="index.php?action=adminData&sortData=nbComments&sortOrder=<?php if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
+            <th>
+                <a href="index.php?action=adminData&sortData=nbComments&sortOrder=<?php if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
                                                                                         if ($_GET['sortData'] == "nbComments" && $_GET['sortOrder'] == 'true') {
                                                                                             echo 'false';
                                                                                         } else {
@@ -44,26 +50,28 @@
                                                                                         echo 'true';
                                                                                     }
                                                                                     ?>"> Nombre de commentaires </a></th>
-            <th><a href="index.php?action=adminData&sortData=dateCreation&sortOrder=<?php if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
-                                                                                            if ($_GET['sortData'] == "dateCreation" && $_GET['sortOrder'] == 'true') {
-                                                                                                echo 'false';
-                                                                                            } else {
-                                                                                                echo 'true';
-                                                                                            }
+            <th>
+                <a href="index.php?action=adminData&sortData=dateCreation&sortOrder=<?php if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
+                                                                                        if ($_GET['sortData'] == "dateCreation" && $_GET['sortOrder'] == 'true') {
+                                                                                            echo 'false';
                                                                                         } else {
                                                                                             echo 'true';
                                                                                         }
-                                                                                        ?>"> Date de creation </a></th>
-            <th><a href="index.php?action=adminData&sortData=dateUpdate&sortOrder=<?php if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
-                                                                                            if ($_GET['sortData'] == "dateUpdate" && $_GET['sortOrder'] == 'true') {
-                                                                                                echo 'false';
-                                                                                            } else {
-                                                                                                echo 'true';
-                                                                                            }
+                                                                                    } else {
+                                                                                        echo 'true';
+                                                                                    }
+                                                                                    ?>"> Date de creation </a></th>
+            <th>
+                <a href="index.php?action=adminData&sortData=dateUpdate&sortOrder=<?php if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
+                                                                                        if ($_GET['sortData'] == "dateUpdate" && $_GET['sortOrder'] == 'true') {
+                                                                                            echo 'false';
                                                                                         } else {
                                                                                             echo 'true';
                                                                                         }
-                                                                                        ?>"> Date de mise à jour </a></th>
+                                                                                    } else {
+                                                                                        echo 'true';
+                                                                                    }
+                                                                                    ?>"> Date de mise à jour </a></th>
             <th></th>
             <th></th>
         </tr>
