@@ -27,7 +27,13 @@ class ArticleManager extends AbstractEntityManager
      */
     public function getAllArticlesWithNbComments() : array
     {
-        $sql = "SELECT article.*, COUNT(comment.id) AS nbComments FROM article LEFT JOIN comment ON article.id = comment.id_article GROUP BY article.id";
+        $sql =
+        <<<'SQL'
+        SELECT article.*, COUNT(comment.id) AS nbComments 
+        FROM article 
+        LEFT JOIN comment ON article.id = comment.id_article 
+        GROUP BY article.id
+        SQL;
         $result = $this->db->query($sql);
         $articles = [];
 
