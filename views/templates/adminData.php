@@ -85,7 +85,9 @@
                 <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Modifier</a></td>
                 <td><a class="submit" href="index.php?action=deleteArticle&id=<?= $article->getId() ?>" <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?") ?>>Supprimer</a></td>
             </tr>
+    
         <?php }  ?>
+        </table>
 </div>
 
 <a class="submit" href="index.php?action=showUpdateArticleForm">Ajouter un article</a>

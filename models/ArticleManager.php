@@ -11,7 +11,9 @@ class ArticleManager extends AbstractEntityManager
      */
     public function getAllArticles() : array
     {
-        $sql = "SELECT * FROM article";
+        $sql = <<<SQL
+        SELECT * FROM article
+        SQL;
         $result = $this->db->query($sql);
         $articles = [];
 
@@ -27,6 +29,18 @@ class ArticleManager extends AbstractEntityManager
      */
     public function getAllArticlesWithNbComments() : array
     {
+
+
+        $columnMapping = [
+            'id' => 'article.id',
+            'title' => 'article.title',
+            'content' => 'article.content',
+            'date_creation' => 'article.date_creation',
+            'date_update' => 'article.date_update',
+            'id_user' => 'article.id_user',
+            'views' => 'article.views',
+            'nbComments' => 'COUNT(comment.id)'
+        ];
         $sql =
         <<<'SQL'
         SELECT article.*, COUNT(comment.id) AS nbComments 
@@ -51,7 +65,9 @@ class ArticleManager extends AbstractEntityManager
      */
     public function getArticleById(int $id) : ?Article
     {
-        $sql = "SELECT * FROM article WHERE id = :id";
+        $sql = <<<SQL
+        SELECT * FROM article WHERE id = :id
+        SQL;
         $result = $this->db->query($sql, ['id' => $id]);
         $article = $result->fetch();
         if ($article) {

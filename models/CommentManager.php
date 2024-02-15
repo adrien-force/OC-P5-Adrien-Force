@@ -12,7 +12,9 @@ class CommentManager extends AbstractEntityManager
      */
     public function getNbCommentsByArticleId(int $idArticle) : int
     {
-        $sql = "SELECT COUNT(*) FROM comment WHERE id_article = :idArticle";
+        $sql = <<<SQL
+        SELECT COUNT(*) FROM comment WHERE id_article = :idArticle
+        SQL;
         $result = $this->db->query($sql, ['idArticle' => $idArticle]);
         return $result->fetchColumn();
     }
@@ -24,7 +26,9 @@ class CommentManager extends AbstractEntityManager
      */
     public function getAllCommentsByArticleId(int $idArticle) : array
     {
-        $sql = "SELECT * FROM comment WHERE id_article = :idArticle";
+        $sql = <<<SQL
+        SELECT * FROM comment WHERE id_article = :idArticle
+        SQL;
         $result = $this->db->query($sql, ['idArticle' => $idArticle]);
         $comments = [];
 
@@ -41,7 +45,9 @@ class CommentManager extends AbstractEntityManager
      */
     public function getCommentById(int $id) : ?Comment
     {
-        $sql = "SELECT * FROM comment WHERE id = :id";
+        $sql = <<<SQL
+        SELECT * FROM comment WHERE id = :id
+        SQL;
         $result = $this->db->query($sql, ['id' => $id]);
         $comment = $result->fetch();
         if ($comment) {
