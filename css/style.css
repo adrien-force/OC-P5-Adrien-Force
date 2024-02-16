@@ -12,6 +12,7 @@
 /**
  * Déclaration des couleurs.
  */
+ /*TODO Revoir couleur comments */
 :root {
     --backgroundColor: #f1f0eb;
     --headerColor: #d79922;
@@ -20,6 +21,7 @@
     --dateColor: #3f56a4;
     --quoteColor: #c5cbe4;
     --commentPaleColor: #99a140;
+    --commentPaleSecondColor: #8c9060;
     --commentColor: #255E33;
 }
 
@@ -307,10 +309,28 @@ a.info {
  * Partie admin
  */ 
 
+table {
+    border-spacing: 0px;
+
+}
+
 .adminArticle {
     margin-bottom: 20px;
     background-color: var(--commentPaleColor);
     color: white;
+}
+
+.even {
+    background-color: var(--commentPaleSecondColor);
+    border: none;
+
+}
+
+.odd {
+    background-color: var(--commentPaleColor);
+    border: none;
+
+
 }
 
 .articleLine {
