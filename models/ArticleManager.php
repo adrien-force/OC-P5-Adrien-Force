@@ -24,13 +24,13 @@ class ArticleManager extends AbstractEntityManager
     }
 
     /**
-     * Récupère tous les articles avec le nombre de commentaires.
+     * Récupère tous les articles avec le nombre de commentaires associés.
+     * @param string $sortData : la colonne de tri.
+     * @param string $sortOrder : l'ordre de tri.
      * @return array : un tableau d'objets Article.
      */
-    public function getAllArticlesWithNbComments() : array
+    public function getAllArticlesWithNbComments(string $sortData = null, string $sortOrder = null) : array
     {
-
-
         $columnMapping = [
             'id' => 'article.id',
             'title' => 'article.title',
@@ -41,6 +41,7 @@ class ArticleManager extends AbstractEntityManager
             'views' => 'article.views',
             'nbComments' => 'COUNT(comment.id)'
         ];
+        
         $sql =
         <<<'SQL'
         SELECT article.*, COUNT(comment.id) AS nbComments 
@@ -48,6 +49,13 @@ class ArticleManager extends AbstractEntityManager
         LEFT JOIN comment ON article.id = comment.id_article 
         GROUP BY article.id
         SQL;
+        
+        if ($sortData && $sortOrder) {
+            if (array_key_exists($sortData, $columnMapping)) {
+                $sql .= " ORDER BY {$columnMapping[$sortData]} {$sortOrder}";
+            }
+        }
+        
         $result = $this->db->query($sql);
         $articles = [];
 
@@ -57,7 +65,6 @@ class ArticleManager extends AbstractEntityManager
         return $articles;
     }
 
-    
     /**
      * Récupère un article par son id.
      * @param int $id : l'id de l'article.

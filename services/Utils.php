@@ -87,28 +87,6 @@ class Utils {
         return $_REQUEST[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Cette méthode permet de trier un tableau d'objets par rapport à une propriété de l'objet.
-     * @param array $array : le tableau à trier.
-     * @param string $propertyName : le nom de la propriété à utiliser pour le tri.
-     * @param bool $sortOrder : true pour un tri ascendant, false pour un tri descendant.
-     * @return array : le tableau trié.
-     */
-    public static function sortObjects(array $array, string $propertyName, bool $sortOrder) : array
-    {
-        usort($array, function($a, $b) use ($propertyName, $sortOrder) {
-            $valueA = self::getPropertyValue($a, $propertyName);
-            $valueB = self::getPropertyValue($b, $propertyName);
-
-            if ($sortOrder == true) {
-                return $valueA <=> $valueB;
-            }
-            
-                return $valueB <=> $valueA;
-            
-        });
-        return $array;
-    }
 
     /**
      * Cette méthode permet de récupérer la valeur d'une propriété d'un objet.

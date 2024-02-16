@@ -38,18 +38,21 @@ class AdminController {
 
 
         $sortData = $_GET['sortData'] ?? 'id';
-        $sortOrder = $_GET['sortOrder'] ?? 'true';
+        $sortOrder = $_GET['sortOrder'] ?? 'ASC';
         if ($sortOrder == 'false'){
             $sortOrder = false;
         }
 
         // On récupère les articles.
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticlesWithNbComments();
+        
         if (isset($_GET['sortData']) || (isset($_GET['sortOrder']))) 
         {
-            $articles = $newUtils->sortObjects($articles, $sortData, $sortOrder);
-        };
+            $articles = $articleManager->getAllArticlesWithNbComments(sortData: $sortData, sortOrder: $sortOrder);
+        }
+        else {
+            $articles = $articleManager->getAllArticlesWithNbComments();
+        }
 
         // On affiche la page d'administration des données.
         $view = new View("Administration des données");
