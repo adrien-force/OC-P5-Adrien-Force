@@ -63,6 +63,7 @@ class AdminController {
         ]);
     }
 
+
     /**
      * Vérifie que l'utilisateur est connecté.
      * @return void
