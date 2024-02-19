@@ -31,6 +31,9 @@ class ArticleManager extends AbstractEntityManager
      */
     public function getAllArticlesWithNbComments(string $sortData = null, string $sortOrder = null) : array
     {
+
+        //TODO Mapping sortOrder / anti injection SQL
+        
         $columnMapping = [
             'id' => 'article.id',
             'title' => 'article.title',

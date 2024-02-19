@@ -5,7 +5,8 @@
  * Et un formulaire pour ajouter un article. 
  */
 
-// ! Demander confirmation pour le placement de la function sortLinkSelector / Architecure MVC
+// TODO Typage function
+// TODO Mettre la function dans Utils.php ??
 function sortLinkSelector($input) {
     if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
         if ($_GET['sortData'] == $input && $_GET['sortOrder'] == 'ASC') {
@@ -49,6 +50,8 @@ function sortLinkSelector($input) {
             <th></th>
             <th></th>
         </tr>
+
+        
         <?php foreach ($articles as $index => $article) { ?>
             <tr class="<?= $index % 2 == 0 ? 'even' : 'odd' ?>">
                 <td><?= $article->getTitle() ?></td>

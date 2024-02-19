@@ -12,6 +12,8 @@ class CommentManager extends AbstractEntityManager
      */
     public function getNbCommentsByArticleId(int $idArticle) : int
     {
+
+        //TODO Syntaxe SQL retour a ligne
         $sql = <<<SQL
         SELECT COUNT(*) FROM comment WHERE id_article = :idArticle
         SQL;
