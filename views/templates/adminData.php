@@ -5,9 +5,8 @@
  * Et un formulaire pour ajouter un article. 
  */
 
-// TODO Typage function
-// TODO Mettre la function dans Utils.php ??
-function sortLinkSelector($input) {
+
+function sortLinkSelector(string $input): string {
     if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
         if ($_GET['sortData'] == $input && $_GET['sortOrder'] == 'ASC') {
             $output = 'DESC';
