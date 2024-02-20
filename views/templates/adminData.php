@@ -30,7 +30,6 @@ function sortLinkSelector(string $input): string {
 
     <table>
         <tr>
-            <!--! TODO Refactor le selecteur de lien -->
             <th>
                 <a href="index.php?action=adminData&sortData=title&sortOrder=<?= sortLinkSelector('title') ?>"> Titre </a>
             </th>
