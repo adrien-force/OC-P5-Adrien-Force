@@ -310,8 +310,12 @@ a.info {
  */ 
 
 table {
-    border-spacing: 0px;
+    border-collapse: collapse;
+    border-spacing: 5px;
+}
 
+td, th {
+    padding: 5px;
 }
 
 .adminArticle {
@@ -322,15 +326,11 @@ table {
 
 .even {
     background-color: var(--commentPaleSecondColor);
-    border: none;
-
+    border : 1px solid var(--commentPaleColor);
 }
 
 .odd {
     background-color: var(--commentPaleColor);
-    border: none;
-
-
 }
 
 .articleLine {
