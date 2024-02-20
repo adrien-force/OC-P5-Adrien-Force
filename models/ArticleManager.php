@@ -31,8 +31,10 @@ class ArticleManager extends AbstractEntityManager
      */
     public function getAllArticlesWithNbComments(string $sortData = null, string $sortOrder = null) : array
     {
-
-        //TODO Mapping sortOrder / anti injection SQL
+        $orderMapping = [
+            'asc' => 'ASC',
+            'desc' => 'DESC'
+        ];
         
         $columnMapping = [
             'id' => 'article.id',
@@ -45,8 +47,7 @@ class ArticleManager extends AbstractEntityManager
             'nbComments' => 'COUNT(comment.id)'
         ];
         
-        $sql =
-        <<<'SQL'
+        $sql = <<<SQL
         SELECT article.*, COUNT(comment.id) AS nbComments 
         FROM article 
         LEFT JOIN comment ON article.id = comment.id_article 
@@ -55,7 +56,7 @@ class ArticleManager extends AbstractEntityManager
         
         if ($sortData && $sortOrder) {
             if (array_key_exists($sortData, $columnMapping)) {
-                $sql .= " ORDER BY {$columnMapping[$sortData]} {$sortOrder}";
+                $sql .= " ORDER BY {$columnMapping[$sortData]} {$orderMapping[$sortOrder]}";
             }
         }
         
@@ -107,7 +108,11 @@ class ArticleManager extends AbstractEntityManager
      */
     public function increaseViews(int $id) : void
     {
-        $sql = "UPDATE article SET views = views + 1 WHERE id = :id";
+        $sql = <<<SQL
+        UPDATE article 
+        SET views = views + 1 
+        WHERE id = :id
+        SQL;
         $this->db->query($sql, ['id' => $id]);
     }
 
@@ -118,7 +123,10 @@ class ArticleManager extends AbstractEntityManager
      */
     public function addArticle(Article $article) : void
     {
-        $sql = "INSERT INTO article (id_user, title, content, date_creation) VALUES (:id_user, :title, :content, NOW())";
+        $sql = <<<SQL
+        INSERT INTO article (id_user, title, content, date_creation) 
+        VALUES (:id_user, :title, :content, NOW())
+        SQL;
         $this->db->query($sql, [
             'id_user' => $article->getIdUser(),
             'title' => $article->getTitle(),
@@ -133,7 +141,11 @@ class ArticleManager extends AbstractEntityManager
      */
     public function updateArticle(Article $article) : void
     {
-        $sql = "UPDATE article SET title = :title, content = :content, date_update = NOW() WHERE id = :id";
+        $sql = <<<SQL
+        UPDATE article 
+        SET title = :title, content = :content, date_update = NOW() 
+        WHERE id = :id
+        SQL;
         $this->db->query($sql, [
             'title' => $article->getTitle(),
             'content' => $article->getContent(),
@@ -148,7 +160,10 @@ class ArticleManager extends AbstractEntityManager
      */
     public function deleteArticle(int $id) : void
     {
-        $sql = "DELETE FROM article WHERE id = :id";
+        $sql = <<<SQL
+        DELETE FROM article 
+        WHERE id = :id
+        SQL;
         $this->db->query($sql, ['id' => $id]);
     }
 }

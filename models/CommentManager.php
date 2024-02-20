@@ -15,7 +15,9 @@ class CommentManager extends AbstractEntityManager
 
         //TODO Syntaxe SQL retour a ligne
         $sql = <<<SQL
-        SELECT COUNT(*) FROM comment WHERE id_article = :idArticle
+        SELECT COUNT(*) 
+        FROM comment 
+        WHERE id_article = :idArticle
         SQL;
         $result = $this->db->query($sql, ['idArticle' => $idArticle]);
         return $result->fetchColumn();
@@ -29,7 +31,9 @@ class CommentManager extends AbstractEntityManager
     public function getAllCommentsByArticleId(int $idArticle) : array
     {
         $sql = <<<SQL
-        SELECT * FROM comment WHERE id_article = :idArticle
+        SELECT * 
+        FROM comment 
+        WHERE id_article = :idArticle
         SQL;
         $result = $this->db->query($sql, ['idArticle' => $idArticle]);
         $comments = [];
@@ -48,7 +52,9 @@ class CommentManager extends AbstractEntityManager
     public function getCommentById(int $id) : ?Comment
     {
         $sql = <<<SQL
-        SELECT * FROM comment WHERE id = :id
+        SELECT * 
+        FROM comment 
+        WHERE id = :id
         SQL;
         $result = $this->db->query($sql, ['id' => $id]);
         $comment = $result->fetch();
@@ -65,7 +71,10 @@ class CommentManager extends AbstractEntityManager
      */
     public function addComment(Comment $comment) : bool
     {
-        $sql = "INSERT INTO comment (pseudo, content, id_article, date_creation) VALUES (:pseudo, :content, :idArticle, NOW())";
+        $sql = <<<SQL
+        INSERT INTO comment (pseudo, content, id_article, date_creation)
+        VALUES (:pseudo, :content, :idArticle, NOW())
+        SQL;
         $result = $this->db->query($sql, [
             'pseudo' => $comment->getPseudo(),
             'content' => $comment->getContent(),
@@ -81,7 +90,10 @@ class CommentManager extends AbstractEntityManager
      */
     public function deleteComment(Comment $comment) : bool
     {
-        $sql = "DELETE FROM comment WHERE id = :id";
+        $sql = <<<SQL
+        DELETE FROM comment 
+        WHERE id = :id
+        SQL;
         $result = $this->db->query($sql, ['id' => $comment->getId()]);
         return $result->rowCount() > 0;
     }
