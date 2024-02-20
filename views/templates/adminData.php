@@ -47,6 +47,9 @@ function sortLinkSelector(string $input): string {
             </th>
             <th></th>
             <th></th>
+            <th></th>
+
+
         </tr>
 
         
@@ -57,6 +60,7 @@ function sortLinkSelector(string $input): string {
                 <td><?= $article->getNbComments() ?></td>
                 <td><?= $article->getDateCreationString()  ?></td>
                 <td><?= $article->getDateUpdateString() ?></td>
+                <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Commentaires</a></td>
                 <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Modifier</a></td>
                 <td><a class="submit" href="index.php?action=deleteArticle&id=<?= $article->getId() ?>" <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?") ?>>Supprimer</a></td>
             </tr>

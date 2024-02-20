@@ -361,6 +361,10 @@ td, th {
     display: flex;
 }
 
+.supprComment {
+    margin-top: 20px;
+}
+
 /** 
  * Footer global de la page.
  */
