@@ -53,18 +53,20 @@ function sortLinkSelector(string $input): string {
         </tr>
 
         
-        <?php foreach ($articles as $index => $article) { ?>
-            <tr class="<?= $index % 2 == 0 ? 'even' : 'odd' ?>">
-                <td><?= $article->getTitle() ?></td>
-                <td><?= $article->getViews() ?></td>
-                <td><?= $article->getNbComments() ?></td>
-                <td><?= $article->getDateCreationString()  ?></td>
-                <td><?= $article->getDateUpdateString() ?></td>
-                <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Commentaires</a></td>
-                <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Modifier</a></td>
-                <td><a class="submit" href="index.php?action=deleteArticle&id=<?= $article->getId() ?>" <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?") ?>>Supprimer</a></td>
-            </tr>
-        <?php }  ?>
+        <?php if (isset($articles)) {
+            foreach ($articles as $index => $article) { ?>
+                <tr class="<?= $index % 2 == 0 ? 'even' : 'odd' ?>">
+                    <td><?= $article->getTitle() ?></td>
+                    <td><?= $article->getViews() ?></td>
+                    <td><?= $article->getNbComments() ?></td>
+                    <td><?= $article->getDateCreationString()  ?></td>
+                    <td><?= $article->getDateUpdateString() ?></td>
+                    <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Commentaires</a></td>
+                    <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Modifier</a></td>
+                    <td><a class="submit" href="index.php?action=deleteArticle&id=<?= $article->getId() ?>" <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?") ?>>Supprimer</a></td>
+                </tr>
+            <?php }
+        } ?>
     </table>
 </div>
 
