@@ -25,8 +25,8 @@ class ArticleManager extends AbstractEntityManager
 
     /**
      * Récupère tous les articles avec le nombre de commentaires associés.
-     * @param string $sortData : la colonne de tri.
-     * @param string $sortOrder : l'ordre de tri.
+     * @param string|null $sortData : la colonne de tri.
+     * @param string|null $sortOrder : l'ordre de tri.
      * @return array : un tableau d'objets Article.
      */
     public function getAllArticlesWithNbComments(string $sortData = null, string $sortOrder = null) : array
@@ -56,7 +56,7 @@ class ArticleManager extends AbstractEntityManager
         
         if ($sortData && $sortOrder) {
             if (array_key_exists($sortData, $columnMapping)) {
-                $sql .= " ORDER BY {$columnMapping[$sortData]} {$orderMapping[$sortOrder]}";
+                $sql .= " ORDER BY $columnMapping[$sortData] $orderMapping[$sortOrder]";
             }
         }
         
