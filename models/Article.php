@@ -14,6 +14,52 @@
     private ?DateTime $dateUpdate = null;
     private ?int $nbComments = null;
 
+
+    /**
+     * Setter pour le nombre de commentaires.
+     * @param int $nbComments
+     */
+    public function setNbComments(int $nbComments) : void
+    {
+        $this->nbComments = $nbComments;
+    }
+
+    /**
+     * Getter pour le nombre de commentaires.
+     * @return int
+     */
+    public function getNbComments() : int
+    {
+        return $this->nbComments;
+    }
+    
+    /**
+     * Setter pour le nombre de vues.
+     * @param int $views
+     */
+    public function setViews(int $views) : void
+    {
+        $this->views = $views;
+    }
+
+    /**
+     * Getter pour le nombre de vues.
+     * @return int
+     */
+    public function getViews() : int
+    {
+        return $this->views;
+    }
+
+    /**
+     * Setter pour l'id de l'utilisateur. 
+     * @param int $idUser
+     */
+    public function setIdUser(int $idUser) : void 
+    {
+        $this->idUser = $idUser;
+    }
+
     /**
      * Getter pour l'id de l'utilisateur.
      * @return int
@@ -24,6 +70,15 @@
     }
 
     /**
+     * Setter pour le titre.
+     * @param string $title
+     */
+    public function setTitle(string $title) : void 
+    {
+        $this->title = $title;
+    }
+
+    /**
      * Getter pour le titre.
      * @return string
      */
@@ -31,6 +86,16 @@
     {
         return $this->title;
     }
+
+    /**
+     * Setter pour le contenu.
+     * @param string $content
+     */
+    public function setContent(string $content) : void 
+    {
+        $this->content = $content;
+    }
+
     
     /**
      * Getter pour le contenu.
@@ -53,4 +118,73 @@
         return $this->content;
     }
 
+    /**
+     * Setter pour la date de création. Si la date est une string, on la convertit en DateTime.
+     * @param string|DateTime $dateCreation
+     * @param string $format : le format pour la convertion de la date si elle est une string.
+     * Par défaut, c'est le format de date mysql qui est utilisé. 
+     */
+    public function setDateCreation(string|DateTime $dateCreation, string $format = 'Y-m-d H:i:s') : void 
+    {
+        if (is_string($dateCreation)) {
+            $dateCreation = DateTime::createFromFormat($format, $dateCreation);
+        }
+        $this->dateCreation = $dateCreation;
+    }
+
+    /**
+     * Getter pour la date de création.
+     * Grâce au setter, on a la garantie de récupérer un objet DateTime.
+     * @return DateTime
+     */
+    public function getDateCreation() : DateTime 
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * Getter pour la date de création au format string.
+     * @return string
+     */
+    public function getDateCreationString() : string
+    {
+        return $this->dateCreation->format('d/m/Y H:i:s');
+    }
+
+    /**
+     * Setter pour la date de mise à jour. Si la date est une string, on la convertit en DateTime.
+     * @param string|DateTime $dateUpdate
+     * @param string $format : le format pour la convertion de la date si elle est une string.
+     * Par défaut, c'est le format de date mysql qui est utilisé.
+     */
+    public function setDateUpdate(string|DateTime|null $dateUpdate, string $format = 'Y-m-d H:i:s') : void 
+    {
+        if (is_string($dateUpdate)) {
+            $dateUpdate = DateTime::createFromFormat($format, $dateUpdate);
+        }
+        $this->dateUpdate = $dateUpdate;
+    }
+
+    /**
+     * Getter pour la date de mise à jour.
+     * Grâce au setter, on a la garantie de récupérer un objet DateTime ou null
+     * si la date de mise à jour n'a pas été définie.
+     * @return DateTime|null
+     */
+    public function getDateUpdate() : ?DateTime 
+    {
+        return $this->dateUpdate;
+    }
+
+    /**
+     * Getter pour la date de mise à jour au format string.
+     * @return string
+     */
+    public function getDateUpdateString() : string
+    {
+        if ($this->dateUpdate) {
+            return $this->dateUpdate->format('d/m/Y H:i:s');
+        }
+        return "";
+    }
  }

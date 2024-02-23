@@ -23,7 +23,6 @@ abstract class AbstractEntity
      * Permet de transformer les données d'un tableau associatif.
      * Les noms de champs de la table doivent correspondre aux noms des attributs de l'entité.
      * Les underscore sont transformés en camelCase (ex: date_creation devient setDateCreation).
-     * @param array $data
      * @return void
      */
     protected function hydrate(array $data) : void 
@@ -36,6 +35,17 @@ abstract class AbstractEntity
         }
     }
 
+    /** 
+     * Setter pour l'id.
+     * @param int $id
+     * @return void
+     */
+    public function setId(int $id) : void 
+    {
+        $this->id = $id;
+    }
+
+    
     /**
      * Getter pour l'id.
      * @return int

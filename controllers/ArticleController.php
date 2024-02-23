@@ -17,7 +17,7 @@ class ArticleController
 
     /**
      * Affiche le détail d'un article.
-     * @throws Exception
+     * @return void
      */
     public function showArticle() : void
     {
