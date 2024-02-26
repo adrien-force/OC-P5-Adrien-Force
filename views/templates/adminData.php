@@ -19,6 +19,20 @@ function sortLinkSelector(string $input): string
     return $output;
 }
 
+function showArrowBasedOnSortOrder(string $input): string
+{
+    $output = "";
+    if ($_GET['sortData'] == $input) {
+        if ($_GET['sortOrder'] == 'ASC') {
+            $output = '▲';
+        }
+        if ($_GET['sortOrder'] == 'DESC') {
+            $output = '▼';
+        }
+    }
+    return $output;
+}
+
 ?>
 
 <div class="adminLinks">
@@ -32,23 +46,23 @@ function sortLinkSelector(string $input): string
         <tr>
             <th>
                 <a href="index.php?action=adminData&sortData=title&sortOrder=<?= sortLinkSelector('title') ?>">
-                    Titre </a>
+                    Titre <?= showArrowBasedOnSortOrder('title') ?> </a>
             </th>
             <th>
                 <a href="index.php?action=adminData&sortData=views&sortOrder=<?= sortLinkSelector('views') ?>"> Nombres
-                    de vues </a>
+                    de vues <?= showArrowBasedOnSortOrder('views') ?></a>
             </th>
             <th>
                 <a href="index.php?action=adminData&sortData=nbComments&sortOrder=<?= sortLinkSelector('nbComments') ?>">
-                    Nombre de commentaires </a>
+                    Nombre de commentaires <?= showArrowBasedOnSortOrder('nbComments') ?></a>
             </th>
             <th>
                 <a href="index.php?action=adminData&sortData=date_creation&sortOrder=<?= sortLinkSelector('date_creation') ?>">
-                    Date de creation </a>
+                    Date de creation <?= showArrowBasedOnSortOrder('date_creation') ?></a>
             </th>
             <th>
                 <a href="index.php?action=adminData&sortData=date_update&sortOrder=<?= sortLinkSelector('date_update') ?>">
-                    Date de mise à jour </a>
+                    Date de mise à jour<?= showArrowBasedOnSortOrder('date_update') ?></a>
             </th>
             <th></th>
             <th></th>
