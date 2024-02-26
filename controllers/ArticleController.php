@@ -27,13 +27,13 @@ class ArticleController
         $articleManager = new ArticleManager();
         $articleManager->increaseViews($id);
         $article = $articleManager->getArticleById($id);
-        
-        if (!$article) {
-            throw new Exception("L'article demandé n'existe pas.");
-        }
 
         $commentManager = new CommentManager();
         $comments = $commentManager->getAllCommentsByArticleId($id);
+
+        if (!$article) {
+            throw new Exception("L'article demandé n'existe pas.");
+        }
 
         $view = new View($article->getTitle());
         $view->render("detailArticle", ['article' => $article, 'comments' => $comments]);

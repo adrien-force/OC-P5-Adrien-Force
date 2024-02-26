@@ -87,19 +87,4 @@ class Utils {
         return $_REQUEST[$variableName] ?? $defaultValue;
     }
 
-
-    /**
-     * Cette méthode permet de récupérer la valeur d'une propriété d'un objet.
-     * Cela permet de garder la propriété privée et de ne pas avoir à créer un getter.
-     * @param object $object : l'objet dont on veut récupérer la valeur de la propriété.
-     * @param string $propertyName : le nom de la propriété.
-     * @return mixed : la valeur de la propriété.
-     */
-    private static function getPropertyValue(object $object, string $propertyName)
-    {
-        $reflection = new ReflectionClass($object);
-        $property = $reflection->getProperty($propertyName);
-        $property->setAccessible(true);
-        return $property->getValue($object);
-    }
 }

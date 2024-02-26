@@ -5,7 +5,6 @@
  
 class AdminController {
 
-
     /**
      * Affiche la page d'administration.
      * @return void
@@ -218,20 +217,4 @@ class AdminController {
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
     }
-
-    /**
-     * Selecteur de tri booleen
-     * 
-     */
-
-     public function selecteur($input) {if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
-        if ($_GET['sortData'] == $input && $_GET['sortOrder'] == 'true') {
-            $output = 'false';
-        } else {
-            $output = 'true';
-        }
-    } else {
-        $output = 'true';
-    }
-return $output;}
 }
