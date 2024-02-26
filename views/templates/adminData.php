@@ -61,12 +61,12 @@ function sortLinkSelector(string $input): string
         <?php if (isset($articles)) {
             foreach ($articles as $index => $article) { ?>
                 <tr class="<?= $index % 2 == 0 ? 'even' : 'odd' ?>">
-                    <td><?= $article->getTitle() ?></td>
+                    <td><?= $article->getTitle()?></a></td>
                     <td><?= $article->getViews() ?></td>
                     <td><?= $article->getNbComments() ?></td>
                     <td><?= $article->getDateCreationString() ?></td>
                     <td><?= $article->getDateUpdateString() ?></td>
-                    <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Commentaires</a>
+                    <td><a class="submit" href="index.php?action=showArticle&id=<?= $article->getId() ?>">Details</a>
                     </td>
                     <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Modifier</a>
                     </td>
