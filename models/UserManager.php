@@ -14,7 +14,9 @@ class UserManager extends AbstractEntityManager
     public function getUserByLogin(string $login) : ?User 
     {
         $sql = <<<SQL
-        SELECT * FROM user WHERE login = :login
+        SELECT * 
+        FROM user 
+        WHERE login = :login
         SQL;
         $result = $this->db->query($sql, ['login' => $login]);
         $user = $result->fetch();

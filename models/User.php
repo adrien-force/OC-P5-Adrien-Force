@@ -7,6 +7,7 @@ class User extends AbstractEntity
 {
     private string $login;
     private string $password;
+    private string $role;
 
     /**
      * Setter pour le login.
