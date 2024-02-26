@@ -22,12 +22,14 @@ function sortLinkSelector(string $input): string
 function showArrowBasedOnSortOrder(string $input): string
 {
     $output = "";
-    if ($_GET['sortData'] == $input) {
-        if ($_GET['sortOrder'] == 'ASC') {
-            $output = '▲';
-        }
-        if ($_GET['sortOrder'] == 'DESC') {
-            $output = '▼';
+    if (isset($_GET['sortData'])){
+        if ($_GET['sortData'] == $input) {
+            if ($_GET['sortOrder'] == 'ASC') {
+                $output = '▲';
+            }
+            if ($_GET['sortOrder'] == 'DESC') {
+                $output = '▼';
+            }
         }
     }
     return $output;
@@ -37,7 +39,7 @@ function showArrowBasedOnSortOrder(string $input): string
 
 <div class="adminLinks">
     <h2><a href="index.php?action=admin"> Edition des articles </a></h2>
-    <h2><a href="index.php?action=adminData"> Panel Data </a></h2>
+    <h2><a style="color: red" href="index.php?action=adminData"> Panel Data </a></h2>
 </div>
 
 <div class="adminArticle">

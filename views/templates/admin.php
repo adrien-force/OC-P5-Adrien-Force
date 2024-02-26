@@ -5,7 +5,7 @@
      */
 ?>
 <div class="adminLinks"> 
-<h2> <a href="index.php?action=admin" > Edition des articles </a></h2>
+<h2> <a style="color: red" href="index.php?action=admin" > Edition des articles </a></h2>
 <h2> <a href="index.php?action=adminData" > Panel Data  </a></h2>
 </div>
 
