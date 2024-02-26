@@ -5,6 +5,7 @@
  * Et un formulaire pour ajouter un article. 
  */
 
+var_dump($_SESSION);
 
 function sortLinkSelector(string $input): string {
     if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
