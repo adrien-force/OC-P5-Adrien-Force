@@ -33,7 +33,7 @@
             echo '      <p class="content" >' . Utils::format($comment->getContent()) . '</p>';
 
             if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin') {
-                echo '    <div>  <a class="submit supprComment" href="index.php?action=deleteComment&id=' . $comment->getId() . '" ' . Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") . '>Supprimer</a> </div>';
+                echo '    <div>  <br> <a class="submit supprComment" href="index.php?action=deleteComment&id=' . $comment->getId() . '" ' . Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") . '>Supprimer</a> </div>';
             }
             echo '  </div>';
             echo '</li>';
