@@ -5,6 +5,7 @@ class CommentController
     /**
      * Ajoute un commentaire.
      * @return void
+     * @throws Exception
      */
     public function addComment() : void
     {
@@ -48,6 +49,7 @@ class CommentController
     /**
      * Supprime un commentaire.
      * @return void
+     * @throws Exception
      */
     public function deleteComment() : void
     {
