@@ -7,6 +7,8 @@
 -- Version du serveur : 5.7.36
 -- Version de PHP : 8.2.1
 
+/* Structure de la BDD a l'origine du projet. Pour la BDD actuelle, voir ./docs/BlogEm.sql */
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
