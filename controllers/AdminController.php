@@ -34,9 +34,6 @@ class AdminController {
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
-        $newUtils = new Utils();
-
-
         $sortData = $_GET['sortData'] ?? 'id';
         $sortOrder = $_GET['sortOrder'] ?? 'ASC';
         if ($sortOrder == 'false'){
@@ -89,6 +86,7 @@ class AdminController {
     /**
      * Connexion de l'utilisateur.
      * @return void
+     * @throws Exception
      */
     public function connectUser() : void 
     {
@@ -168,6 +166,7 @@ class AdminController {
      * Ajout et modification d'un article. 
      * On sait si un article est ajouté car l'id vaut -1.
      * @return void
+     * @throws Exception
      */
     public function updateArticle() : void 
     {
