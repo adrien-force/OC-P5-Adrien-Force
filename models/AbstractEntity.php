@@ -24,6 +24,7 @@ abstract class AbstractEntity
      * Les noms de champs de la table doivent correspondre aux noms des attributs de l'entité.
      * Les underscore sont transformés en camelCase (ex: date_creation devient setDateCreation).
      * @return void
+     * @param array $data
      */
     protected function hydrate(array $data) : void 
     {
