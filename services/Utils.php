@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 /**
  * Classe utilitaire : cette classe ne contient que des méthodes statiques qui peuvent être appelées
  * directement sans avoir besoin d'instancier un objet Utils.
@@ -27,7 +29,7 @@ class Utils {
      * @param array $params : Facultatif, les paramètres de l'action sous la forme ['param1' => 'valeur1', 'param2' => 'valeur2']
      * @return void
      */
-    public static function redirect(string $action, array $params = []) : void
+    #[NoReturn] public static function redirect(string $action, array $params = []) : void
     {
         $url = "index.php?action=$action";
         foreach ($params as $paramName => $paramValue) {
