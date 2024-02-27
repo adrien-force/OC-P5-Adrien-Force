@@ -1,15 +1,13 @@
-<?php 
+<?php
 /**
  * Contrôleur de la partie admin.
  */
- 
-class AdminController {
-
+class AdminController
+{
     /**
      * Affiche la page d'administration.
-     * @return void
      */
-    public function showAdmin() : void
+    public function showAdmin(): void
     {
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
@@ -19,84 +17,76 @@ class AdminController {
         $articles = $articleManager->getAllArticles();
 
         // On affiche la page d'administration.
-        $view = new View("Administration");
-        $view->render("admin", [
-            'articles' => $articles
+        $view = new View('Administration');
+        $view->render('admin', [
+            'articles' => $articles,
         ]);
     }
 
     /**
      * Affiche la page d'administration des données.
-     * @return void
      */
-    public function showAdminData() : void
+    public function showAdminData(): void
     {
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
         $sortData = $_GET['sortData'] ?? 'id';
         $sortOrder = $_GET['sortOrder'] ?? 'ASC';
-        if ($sortOrder == 'false'){
+        if ('false' == $sortOrder) {
             $sortOrder = false;
         }
 
         // On récupère les articles.
         $articleManager = new ArticleManager();
-        
-        if (isset($_GET['sortData']) || (isset($_GET['sortOrder']))) 
-        {
+
+        if (isset($_GET['sortData']) || (isset($_GET['sortOrder']))) {
             $articles = $articleManager->getAllArticlesWithNbComments(sortData: $sortData, sortOrder: $sortOrder);
-        }
-        else {
+        } else {
             $articles = $articleManager->getAllArticlesWithNbComments();
         }
 
         // On affiche la page d'administration des données.
-        $view = new View("Administration des données");
-        $view->render("adminData", [
+        $view = new View('Administration des données');
+        $view->render('adminData', [
             'articles' => $articles,
-
-
         ]);
     }
 
-
     /**
      * Vérifie que l'utilisateur est connecté.
-     * @return void
      */
-    private function checkIfUserIsConnected() : void
+    private function checkIfUserIsConnected(): void
     {
         // On vérifie que l'utilisateur est connecté.
         if (!isset($_SESSION['user'])) {
-            Utils::redirect("connectionForm");
+            Utils::redirect('connectionForm');
         }
     }
 
     /**
      * Affichage du formulaire de connexion.
-     * @return void
      */
-    public function displayConnectionForm() : void 
+    public function displayConnectionForm(): void
     {
-        $view = new View("Connexion");
-        $view->render("connectionForm");
+        $view = new View('Connexion');
+        $view->render('connectionForm');
     }
 
     /**
      * Connexion de l'utilisateur.
-     * @return void
+     *
      * @throws Exception
      */
-    public function connectUser() : void 
+    public function connectUser(): void
     {
         // On récupère les données du formulaire.
-        $login = Utils::request("login");
-        $password = Utils::request("password");
+        $login = Utils::request('login');
+        $password = Utils::request('password');
 
         // On vérifie que les données sont valides.
         if (empty($login) || empty($password)) {
-            throw new Exception("Tous les champs sont obligatoires. 1");
+            throw new Exception('Tous les champs sont obligatoires. 1');
         }
 
         // On vérifie que l'utilisateur existe.
@@ -119,67 +109,65 @@ class AdminController {
         $_SESSION['role'] = $user->getRole();
 
         // On redirige vers la page d'administration.
-        Utils::redirect("admin");
+        Utils::redirect('admin');
     }
 
     /**
      * Déconnexion de l'utilisateur.
-     * @return void
      */
-    public function disconnectUser() : void 
+    public function disconnectUser(): void
     {
         // On déconnecte l'utilisateur.
         unset($_SESSION['user']);
 
         // On redirige vers la page d'accueil.
-        Utils::redirect("home");
+        Utils::redirect('home');
     }
 
     /**
      * Affichage du formulaire d'ajout d'un article.
-     * @return void
      */
-    public function showUpdateArticleForm() : void 
+    public function showUpdateArticleForm(): void
     {
         $this->checkIfUserIsConnected();
 
         // On récupère l'id de l'article s'il existe.
-        $id = Utils::request("id", -1);
+        $id = Utils::request('id', -1);
 
         // On récupère l'article associé.
         $articleManager = new ArticleManager();
         $article = $articleManager->getArticleById($id);
 
-        // Si l'article n'existe pas, on en crée un vide. 
+        // Si l'article n'existe pas, on en crée un vide.
         if (!$article) {
             $article = new Article();
         }
 
         // On affiche la page de modification de l'article.
         $view = new View("Edition d'un article");
-        $view->render("updateArticleForm", [
-            'article' => $article
+        $view->render('updateArticleForm', [
+            'article' => $article,
         ]);
     }
 
     /**
-     * Ajout et modification d'un article. 
+     * Ajout et modification d'un article.
      * On sait si un article est ajouté car l'id vaut -1.
-     * @return void
+     *
      * @throws Exception
      */
-    public function updateArticle() : void 
+    public function updateArticle(): void
     {
         $this->checkIfUserIsConnected();
 
         // On récupère les données du formulaire.
-        $id = Utils::request("id", -1);
-        $title = Utils::request("title");
-        $content = Utils::request("content");
+        $id = Utils::request('id', -1);
+        $title = Utils::request('title');
+        $content = Utils::request('content');
 
         // On vérifie que les données sont valides.
         if (empty($title) || empty($content)) {
-            throw new Exception("Tous les champs sont obligatoires. 2");
+            throw new Exception('Tous les champs sont obligatoires. 2');
         }
 
         // On crée l'objet Article.
@@ -187,7 +175,7 @@ class AdminController {
             'id' => $id, // Si l'id vaut -1, l'article sera ajouté. Sinon, il sera modifié.
             'title' => $title,
             'content' => $content,
-            'id_user' => $_SESSION['idUser']
+            'id_user' => $_SESSION['idUser'],
         ]);
 
         // On ajoute l'article.
@@ -195,25 +183,23 @@ class AdminController {
         $articleManager->addOrUpdateArticle($article);
 
         // On redirige vers la page d'administration.
-        Utils::redirect("admin");
+        Utils::redirect('admin');
     }
-
 
     /**
      * Suppression d'un article.
-     * @return void
      */
-    public function deleteArticle() : void
+    public function deleteArticle(): void
     {
         $this->checkIfUserIsConnected();
 
-        $id = Utils::request("id", -1);
+        $id = Utils::request('id', -1);
 
         // On supprime l'article.
         $articleManager = new ArticleManager();
         $articleManager->deleteArticle($id);
-       
+
         // On redirige vers la page d'administration.
-        Utils::redirect("admin");
+        Utils::redirect('admin');
     }
 }

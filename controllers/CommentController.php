@@ -1,22 +1,22 @@
 <?php
 
-class CommentController 
+class CommentController
 {
     /**
      * Ajoute un commentaire.
-     * @return void
+     *
      * @throws Exception
      */
-    public function addComment() : void
+    public function addComment(): void
     {
         // Récupération des données du formulaire.
-        $pseudo = Utils::request("pseudo");
-        $content = Utils::request("content");
-        $idArticle = Utils::request("idArticle");
+        $pseudo = Utils::request('pseudo');
+        $content = Utils::request('content');
+        $idArticle = Utils::request('idArticle');
 
         // On vérifie que les données sont valides.
         if (empty($pseudo) || empty($content) || empty($idArticle)) {
-            throw new Exception("Tous les champs sont obligatoires.");
+            throw new Exception('Tous les champs sont obligatoires.');
         }
 
         // On vérifie que l'article existe.
@@ -30,7 +30,7 @@ class CommentController
         $comment = new Comment([
             'pseudo' => $pseudo,
             'content' => $content,
-            'idArticle' => $idArticle
+            'idArticle' => $idArticle,
         ]);
 
         // On ajoute le commentaire.
@@ -43,21 +43,21 @@ class CommentController
         }
 
         // On redirige vers la page de l'article.
-        Utils::redirect("showArticle", ['id' => $idArticle]);
+        Utils::redirect('showArticle', ['id' => $idArticle]);
     }
 
     /**
      * Supprime un commentaire.
-     * @return void
+     *
      * @throws Exception
      */
-    public function deleteComment() : void
+    public function deleteComment(): void
     {
         // Récupération de l'id du commentaire.
-        $id = Utils::request("id", -1);
+        $id = Utils::request('id', -1);
 
         // On vérifie que l'id est valide.
-        if ($id == -1) {
+        if (-1 == $id) {
             throw new Exception("L'id du commentaire est invalide.");
         }
 
@@ -75,10 +75,10 @@ class CommentController
 
         // On vérifie que la suppression a bien fonctionné.
         if (!$result) {
-            throw new Exception("Une erreur est survenue lors de la suppression du commentaire.");
+            throw new Exception('Une erreur est survenue lors de la suppression du commentaire.');
         }
 
         // On redirige vers la page de l'article.
-        Utils::redirect("showArticle", ['id' => $comment->getIdArticle()]);
+        Utils::redirect('showArticle', ['id' => $comment->getIdArticle()]);
     }
 }

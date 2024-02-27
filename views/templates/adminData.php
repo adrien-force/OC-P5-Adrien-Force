@@ -4,11 +4,10 @@
  * Affichage de la partie admin : liste des articles avec un bouton "modifier" pour chacun.
  * Et un formulaire pour ajouter un article.
  */
-
 function sortLinkSelector(string $input): string
 {
     if (isset($_GET['sortOrder']) || (isset($_GET['sortData']))) {
-        if ($_GET['sortData'] == $input && $_GET['sortOrder'] == 'ASC') {
+        if ($_GET['sortData'] == $input && 'ASC' == $_GET['sortOrder']) {
             $output = 'DESC';
         } else {
             $output = 'ASC';
@@ -16,22 +15,24 @@ function sortLinkSelector(string $input): string
     } else {
         $output = 'ASC';
     }
+
     return $output;
 }
 
 function showArrowBasedOnSortOrder(string $input): string
 {
-    $output = "";
-    if (isset($_GET['sortData'])){
+    $output = '';
+    if (isset($_GET['sortData'])) {
         if ($_GET['sortData'] == $input) {
-            if ($_GET['sortOrder'] == 'ASC') {
+            if ('ASC' == $_GET['sortOrder']) {
                 $output = '▲';
             }
-            if ($_GET['sortOrder'] == 'DESC') {
+            if ('DESC' == $_GET['sortOrder']) {
                 $output = '▼';
             }
         }
     }
+
     return $output;
 }
 
@@ -47,24 +48,24 @@ function showArrowBasedOnSortOrder(string $input): string
     <table>
         <tr>
             <th>
-                <a href="index.php?action=adminData&sortData=title&sortOrder=<?= sortLinkSelector('title') ?>">
-                    Titre <?= showArrowBasedOnSortOrder('title') ?> </a>
+                <a href="index.php?action=adminData&sortData=title&sortOrder=<?php echo sortLinkSelector('title'); ?>">
+                    Titre <?php echo showArrowBasedOnSortOrder('title'); ?> </a>
             </th>
             <th>
-                <a href="index.php?action=adminData&sortData=views&sortOrder=<?= sortLinkSelector('views') ?>"> Nombres
-                    de vues <?= showArrowBasedOnSortOrder('views') ?></a>
+                <a href="index.php?action=adminData&sortData=views&sortOrder=<?php echo sortLinkSelector('views'); ?>"> Nombres
+                    de vues <?php echo showArrowBasedOnSortOrder('views'); ?></a>
             </th>
             <th>
-                <a href="index.php?action=adminData&sortData=nbComments&sortOrder=<?= sortLinkSelector('nbComments') ?>">
-                    Nombre de commentaires <?= showArrowBasedOnSortOrder('nbComments') ?></a>
+                <a href="index.php?action=adminData&sortData=nbComments&sortOrder=<?php echo sortLinkSelector('nbComments'); ?>">
+                    Nombre de commentaires <?php echo showArrowBasedOnSortOrder('nbComments'); ?></a>
             </th>
             <th>
-                <a href="index.php?action=adminData&sortData=date_creation&sortOrder=<?= sortLinkSelector('date_creation') ?>">
-                    Date de creation <?= showArrowBasedOnSortOrder('date_creation') ?></a>
+                <a href="index.php?action=adminData&sortData=date_creation&sortOrder=<?php echo sortLinkSelector('date_creation'); ?>">
+                    Date de creation <?php echo showArrowBasedOnSortOrder('date_creation'); ?></a>
             </th>
             <th>
-                <a href="index.php?action=adminData&sortData=date_update&sortOrder=<?= sortLinkSelector('date_update') ?>">
-                    Date de mise à jour<?= showArrowBasedOnSortOrder('date_update') ?></a>
+                <a href="index.php?action=adminData&sortData=date_update&sortOrder=<?php echo sortLinkSelector('date_update'); ?>">
+                    Date de mise à jour<?php echo showArrowBasedOnSortOrder('date_update'); ?></a>
             </th>
             <th></th>
             <th></th>
@@ -76,22 +77,22 @@ function showArrowBasedOnSortOrder(string $input): string
 
         <?php if (isset($articles)) {
             foreach ($articles as $index => $article) { ?>
-                <tr class="<?= $index % 2 == 0 ? 'even' : 'odd' ?>">
-                    <td><?= $article->getTitle()?></a></td>
-                    <td><?= $article->getViews() ?></td>
-                    <td><?= $article->getNbComments() ?></td>
-                    <td><?= $article->getDateCreationString() ?></td>
-                    <td><?= $article->getDateUpdateString() ?></td>
-                    <td><a class="submit" href="index.php?action=showArticle&id=<?= $article->getId() ?>">Details</a>
+                <tr class="<?php echo 0 == $index % 2 ? 'even' : 'odd'; ?>">
+                    <td><?php echo $article->getTitle(); ?></a></td>
+                    <td><?php echo $article->getViews(); ?></td>
+                    <td><?php echo $article->getNbComments(); ?></td>
+                    <td><?php echo $article->getDateCreationString(); ?></td>
+                    <td><?php echo $article->getDateUpdateString(); ?></td>
+                    <td><a class="submit" href="index.php?action=showArticle&id=<?php echo $article->getId(); ?>">Details</a>
                     </td>
-                    <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Modifier</a>
+                    <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?php echo $article->getId(); ?>">Modifier</a>
                     </td>
                     <td><a class="submit"
-                           href="index.php?action=deleteArticle&id=<?= $article->getId() ?>" <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?") ?>>Supprimer</a>
+                           href="index.php?action=deleteArticle&id=<?php echo $article->getId(); ?>" <?php echo Utils::askConfirmation('Êtes-vous sûr de vouloir supprimer cet article ?'); ?>>Supprimer</a>
                     </td>
                 </tr>
             <?php }
-        } ?>
+            } ?>
     </table>
 </div>
 

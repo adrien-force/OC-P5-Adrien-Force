@@ -11,7 +11,6 @@ class User extends AbstractEntity
 
     /**
      * Setter pour le login.
-     * @param string $login
      */
     public function setLogin(string $login): void
     {
@@ -20,7 +19,6 @@ class User extends AbstractEntity
 
     /**
      * Getter pour le login.
-     * @return string
      */
     public function getLogin(): string
     {
@@ -29,7 +27,6 @@ class User extends AbstractEntity
 
     /**
      * Setter pour le password.
-     * @param string $password
      */
     public function setPassword(string $password): void
     {
@@ -38,7 +35,6 @@ class User extends AbstractEntity
 
     /**
      * Getter pour le password.
-     * @return string
      */
     public function getPassword(): string
     {
@@ -47,7 +43,6 @@ class User extends AbstractEntity
 
     /**
      * Setter pour le role.
-     * @param string $role
      */
     public function setRole(string $role): void
     {
@@ -56,7 +51,6 @@ class User extends AbstractEntity
 
     /**
      * Getter pour le role.
-     * @return string
      */
     public function getRole(): string
     {
