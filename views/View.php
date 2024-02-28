@@ -70,6 +70,6 @@ class View
      */
     private function buildViewPath(string $viewName): string
     {
-        return TEMPLATE_VIEW_PATH.$viewName.'.php';
+        return TEMPLATE_VIEW_PATH . $viewName . '.php';
     }
 }
