@@ -28,6 +28,7 @@ if (isset($article)) {
             echo '<p class="info">Aucun commentaire pour cet article.</p>';
         } else {
             echo '<ul>';
+            //TODO : Partial qui joue le role de template
             foreach ($comments as $comment) {
                 echo '<li>';
                 echo '  <div class="smiley">☻</div>';
