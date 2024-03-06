@@ -30,17 +30,7 @@ if (isset($article)) {
             echo '<ul>';
             //TODO : Partial qui joue le role de template
             foreach ($comments as $comment) {
-                echo '<li>';
-                echo '  <div class="smiley">☻</div>';
-                echo '  <div class="detailComment">';
-                echo '      <h3 class="info">Le ' . Utils::convertDateToFrenchFormat($comment->getDateCreation()) . ", " . Utils::format($comment->getPseudo()) . ' a écrit :</h3>';
-                echo '      <p class="content" >' . Utils::format($comment->getContent()) . '</p>';
-
-                if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin') {
-                    echo '    <div>  <br> <a class="submit supprComment" href="index.php?action=deleteComment&id=' . $comment->getId() . '" ' . Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") . '>Supprimer</a> </div>';
-                }
-                echo '  </div>';
-                echo '</li>';
+                include 'comment.php';
             }
             echo '</ul>';
         }
