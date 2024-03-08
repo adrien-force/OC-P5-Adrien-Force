@@ -4,6 +4,8 @@
  */
 class AdminController
 {
+    //TODO FAIRE SORTIR LA LOGIQUE DE CONTROLLEUR -> DANS UN SERVICE
+    //TODO DIFFERENCIER ADMIN / ADMIN DATA
     /**
      * Affiche la page d'administration.
      */
@@ -33,7 +35,7 @@ class AdminController
 
         $sortData = $_GET['sortData'] ?? 'id';
         $sortOrder = $_GET['sortOrder'] ?? 'ASC';
-        if ('false' == $sortOrder) {
+        if ('false' === $sortOrder) {
             $sortOrder = false;
         }
 

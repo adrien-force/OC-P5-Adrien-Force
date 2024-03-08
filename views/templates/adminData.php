@@ -5,6 +5,11 @@
  * Affichage de la partie admin : liste des articles avec un bouton "modifier" pour chacun.
  * Et un formulaire pour ajouter un article.
  */
+
+
+//TODO : Check SonarLint
+//TODO : Revoir nom function
+
 function sortLinkSelector(string $input): string
 {
     $output = '';
@@ -59,7 +64,8 @@ function showArrowBasedOnSortOrder(string $input): string
                     Titre <?php echo showArrowBasedOnSortOrder('title'); ?> </a>
             </th>
             <th>
-                <a href="index.php?action=adminData&sortData=views&sortOrder=<?php echo sortLinkSelector('views'); ?>"> Nombres
+                <a href="index.php?action=adminData&sortData=views&sortOrder=<?php echo sortLinkSelector('views'); ?>">
+                    Nombres
                     de vues <?php echo showArrowBasedOnSortOrder('views'); ?></a>
             </th>
             <th>
@@ -93,7 +99,8 @@ function showArrowBasedOnSortOrder(string $input): string
                     <td><?php echo $article->getDateUpdateString(); ?></td>
                     <td><a class="submit" href="index.php?action=showArticle&id=<?php echo $article->getId(); ?>">Details</a>
                     </td>
-                    <td><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?php echo $article->getId(); ?>">Modifier</a>
+                    <td><a class="submit"
+                           href="index.php?action=showUpdateArticleForm&id=<?php echo $article->getId(); ?>">Modifier</a>
                     </td>
                     <td><a class="submit"
                            href="index.php?action=deleteArticle&id=<?php echo $article->getId(); ?>" <?php echo Utils::askConfirmation('Êtes-vous sûr de vouloir supprimer cet article ?'); ?>>Supprimer</a>
@@ -106,43 +113,4 @@ function showArrowBasedOnSortOrder(string $input): string
 
 <a class="submit" href="index.php?action=showUpdateArticleForm">Ajouter un article</a>
 
-<div>
-    <style>
-        .graph {
-            width: 700px;
-            height: 300px;
-            border: 1px solid #ccc;
-            margin: 20px auto;
-            padding: 20px;
-            box-sizing: border-box;
-            position: relative;
-        }
-        .bar {
-            background-color: #3498db;
-            width: 20px; /* Change this value to adjust the width of bars */
-            position: absolute;
-            bottom: 0;
-        }
-        .bar:nth-child(1) { left: 30px; }
-        .bar:nth-child(2) { left: 80px; }
-        .bar:nth-child(3) { left: 130px; }
-        /* Add more .bar:nth-child() styles for additional bars */
-        .label {
-            text-align: center;
-            margin-top: 10px;
-        }
-    </style>
-    </head>
-    <body>
-    <div class="graph">
-        <div class="bar" style="height: 150px;"></div> <!-- Change height for each bar -->
-        <div class="bar" style="height: 200px;"></div>
-        <div class="bar" style="height: 100px;"></div>
-        <!-- Add more <div class="bar"></div> elements for additional bars -->
-        <div class="label">Bar 1</div>
-        <div class="label">Bar 2</div>
-        <div class="label">Bar 3</div>
-        <!-- Add more <div class="label">...</div> elements for additional labels -->
-    </div>
-</div>
 
