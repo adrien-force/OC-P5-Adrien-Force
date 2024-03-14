@@ -6,10 +6,6 @@
  * Et un formulaire pour ajouter un article.
  */
 
-
-//TODO : Check SonarLint
-//TODO : Revoir nom function
-
 function sortLinkSelector(string $input): string
 {
     $output = '';

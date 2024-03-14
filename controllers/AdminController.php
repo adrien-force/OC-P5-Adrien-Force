@@ -4,8 +4,6 @@
  */
 class AdminController
 {
-    //TODO FAIRE SORTIR LA LOGIQUE DE CONTROLLEUR -> DANS UN SERVICE
-    //TODO DIFFERENCIER ADMIN / ADMIN DATA
     /**
      * Affiche la page d'administration.
      */
